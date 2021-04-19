@@ -1,0 +1,23 @@
+Chubby: A distrubuted Lock service
+-------------------------------------
+-- Intended for coarse-grained synchronization of activities within Google's Distributed Systems.
+-- Had wider use as a name service.
+-- Used as a repository for configuration information.
+
+Basis of the design of Chubby:
+----------------------------------
+1. Distributed consensus among a few replicas for fault tolerance.
+2. Consistent client-side caching to reduce server load while retaining simple semantics.
+3. Timely notification of updates.
+4. Keeping a Familiar file system interface.
+5. Use caching, protocol-conversion servers, simple load adaptation to allow it scale to tens
+of thousands of client processes per Chubby instance.
+6. Can be scaled farther in future via proxies and partitioning.
+
+Use:
+------
+1. It has become google's primary internal name service.
+2. It is a common rendezvous mechanism for systems such as MapReduce.
+3. The storage systems GFS and Bigtable use Chubby to elect a primary from redundant replicas.
+4. It is a standard repository for files that require high availability -- 
+	 example --- access control lists
